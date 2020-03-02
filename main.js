@@ -39,7 +39,7 @@ var todosObject = {
                 div.classList.add(todosObject.todoList[i].status);
                 // console.log(todosObject.todoList);
             });
-            document.getElementById('main').append(div);
+            document.getElementById('main').prepend(div);
         };
         console.log('print todo click olundu')
     },
