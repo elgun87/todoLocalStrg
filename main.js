@@ -29,9 +29,12 @@ var todosObject = {
             div.append(document.createTextNode(this.todoList[i].todo));
             div.dataset['todo'] = i;
             div.style.fontSize = "30px";
+            div.classList.add('active');
             div.addEventListener('click', function(){
-                div.classList.remove(todosObject.todoList[i].status);
-                div.classList.remove(todosObject.todoList[i].status);
+                // div.classList.remove(todosObject.todoList[i].status);
+                // div.classList.remove(todosObject.todoList[i].status);
+                div.classList.remove('active');
+                div.classList.remove('completed');
                 todosObject.checkStatus(i);
                 div.classList.add(todosObject.todoList[i].status);
                 // console.log(todosObject.todoList);
@@ -80,7 +83,8 @@ var todosObject = {
 
 
 
-$('#add').on('click', function(){
+$('#add').on('click', function(event){
+    // return false;
     todosObject.checkIfLocalEmpty();
 
     let value = document.getElementById('input').value;
@@ -91,6 +95,8 @@ $('#add').on('click', function(){
     todosObject.addDataToLocalStrg();
     document.getElementById('input').value = '';
     console.log(todosObject.todoList);
+    event.preventDefault();
+    return false;
     // todosObject.checkIfLocalEmpty();
     // console.log(todosObject.todoList);
     // window.localStorage.setItem('value',JSON.stringify(todosObject.todoList));
