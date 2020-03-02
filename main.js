@@ -1,4 +1,3 @@
-
 var todosObject = {
 
     todoList: [],
@@ -29,6 +28,7 @@ var todosObject = {
             let div = document.createElement('div');
             div.append(document.createTextNode(this.todoList[i].todo));
             div.dataset['todo'] = i;
+            div.style.fontSize = "30px";
             div.addEventListener('click', function(){
                 div.classList.remove(todosObject.todoList[i].status);
                 div.classList.remove(todosObject.todoList[i].status);
@@ -132,4 +132,3 @@ todosObject.printInitData();
 
 
 // window.localStorage.clear();
-
