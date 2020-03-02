@@ -10,7 +10,7 @@ var todosObject = {
         if(document.getElementById('input').value !== ''){
             this.todoList.push(my_todo);
         }
-        // this.todoList.push(my_todo);
+       
     },
 
     checkStatus: function(i){
@@ -31,13 +31,12 @@ var todosObject = {
             div.style.fontSize = "30px";
             div.classList.add('active');
             div.addEventListener('click', function(){
-                // div.classList.remove(todosObject.todoList[i].status);
-                // div.classList.remove(todosObject.todoList[i].status);
+                
                 div.classList.remove('active');
                 div.classList.remove('completed');
                 todosObject.checkStatus(i);
                 div.classList.add(todosObject.todoList[i].status);
-                // console.log(todosObject.todoList);
+              
             });
             document.getElementById('main').prepend(div);
         };
@@ -45,7 +44,7 @@ var todosObject = {
     },
 
     getInitData: function(){
-        // let arr = [];
+      
         let new_arr = window.localStorage.getItem('value');
     
         if(new_arr !== null){
@@ -57,12 +56,6 @@ var todosObject = {
     printInitData: function(){
         let array = this.getInitData();
         this.printTodo(array);
-
-
-        // for(let i = 0;i < array.length;i ++){
-        //     $('#main').append(`<div>${array[i].todo}</div>`)
-        //     console.log(array[i]);
-        // };
     },
 
     addDataToLocalStrg: function(){
@@ -84,12 +77,10 @@ var todosObject = {
 
 
 $('#add').on('click', function(event){
-    // return false;
+
     todosObject.checkIfLocalEmpty();
 
     let value = document.getElementById('input').value;
-
-    // document.getElementById('input').value = '';
     todosObject.addTodo(value);
     todosObject.printTodo();
     todosObject.addDataToLocalStrg();
@@ -97,44 +88,20 @@ $('#add').on('click', function(event){
     console.log(todosObject.todoList);
     event.preventDefault();
     return false;
-    // todosObject.checkIfLocalEmpty();
-    // console.log(todosObject.todoList);
-    // window.localStorage.setItem('value',JSON.stringify(todosObject.todoList));
 });
 
 $('#clear').on('click', function(){
-    let makeSure = confirm('All todos will be deleted.Are your sure???');
-    if(makeSure){
-        document.getElementById('main').innerHTML = '';
-        todosObject.todoList = [];
-        window.localStorage.clear();
+    let new_arr = window.localStorage.getItem('value');
+    if(new_arr === null){
+        alert('There is no entered todos!!!')
+    }else{
+        let makeSure = confirm('All todos will be deleted.Are your sure???');
+        if(makeSure){
+            document.getElementById('main').innerHTML = '';
+            todosObject.todoList = [];
+            window.localStorage.clear();
+        };
     }
-    // document.getElementById('main').innerHTML = '';
-    // todosObject.todoList = [];
-    // window.localStorage.clear();
-})
+});
 
-
-// function getInitialData(){
-//     let arr = [];
-//     let new_arr = window.localStorage.getItem('value');
-
-//     if(new_arr !== null){
-//         arr = JSON.parse(new_arr);
-//     };
-//     return arr;
-// };
-
-// let array = getInitialData();
-
-// function printInitData(){
-//     for(let i = 0;i < array.length;i ++){
-//         $('#main').append(`<div>${array[i].todo}</div>`)
-//         console.log(array[i]);
-//     };
-// };
 todosObject.printInitData();
-// printInitData();
-
-
-// window.localStorage.clear();
